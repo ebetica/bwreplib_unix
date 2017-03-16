@@ -6,97 +6,99 @@ const int32_t BWrepGameData::k_MaxPlayers = 12;
 const char* BWrepGameData::g_Races[] = {"Zerg","Terran","Protoss"};
 
 const char* BWrepGameData::g_Commands[] = {
-	"! 0x00",	//0x00
-	"! 0x01",
-	"! 0x02",
-	"! 0x03",
-	"! 0x04",
-	"! 0x05",	//0x05
-	"! 0x06",
-	"! 0x07",
-	"! 0x08",
-	"Select",
-	"Shift Select",	//0x0a
-	"Shift Deselect",
-	"Build",
-	"Vision",
-	"Ally",
-	"0x0f",
-	"! 0x10",	//0x10
-	"! 0x11",
-	"! 0x12",
-	"Hotkey",
-	"Move",
-	"Attack",	//0x15
-	"! 0x16",
-	"! 0x17",
-	"Cancel",
-	"Cancel Hatch",
-	"Stop",	//0x1a
-	"! 0x1A",
-	"0x1c",
-	"! 0x1d",
-	"Return Cargo",
-	"Train",
-	"Cancel Train",	//cancel train
-	"Cloak",	//cloak?
-	"Decloak",	//decloak?
-	"Hatch",
-	"! 0x24",
-	"Unsiege",	//0x25
-	"Siege",
-	"Arm (Interceptor/Scarab)",
-	"Unload All",
-	"Unload",
-	"Merge Archon",	//0x2a
-	"Hold Position",
-	"Burrow",
-	"Unburrow",
-	"Cancel Nuke",
-	"Lift",
-	"Research",	//0x30
-	"! 0x31",
-	"Upgrade",
-	"0x33",
-	"! 0x34",
-	"Morph",	//0x35
-	"Stim",
-	"! 0x37",
-	"! 0x38",
-	"! 0x39",
-	"! 0x3a",	//0x3a
-	"! 0x3b",
-	"! 0x3c",
-	"! 0x3d",
-	"! 0x3e",
-	"! 0x3f",
-	"! 0x40",	//0x40
-	"! 0x41",
-	"! 0x42",
-	"! 0x43",
-	"! 0x44",
-	"! 0x45",	//0x45
-	"! 0x46",
-	"! 0x47",
-	"! 0x48",
-	"! 0x49",
-	"! 0x4a",	//0x4a
-	"! 0x4b",
-	"! 0x4c",
-	"! 0x4d",
-	"! 0x4e",
-	"! 0x4f",
-	"! 0x50",	//0x50
-	"! 0x51",
-	"! 0x52",
-	"! 0x53",
-	"! 0x54",
-	"! 0x55",
-	"! 0x56",
-	"Leave Game",
-	"! 0x58",
-	"! 0x59",
-	"Merge Dark Archon",
+  "!0x00",    //0x00
+  "!0x01",
+  "!0x02",
+  "!0x03",
+  "!0x04",
+  "!0x05",    //0x05
+  "!0x06",
+  "!0x07",
+  "!0x08",
+  "Select",
+  "Shift Select",    //0x0a
+  "Shift Deselect",
+  "Build",
+  "Vision",
+  "Ally",
+  "!0x0f",
+  "!0x10",    //0x10
+  "!0x11",
+  "!0x12",
+  "Hotkey",
+  "Move",
+  "Attack",    //0x15
+  "!0x16",
+  "!0x17",
+  "Cancel",
+  "Cancel Hatch",
+  "Stop",    //0x1a
+  "!0x1b",
+  "!0x1c",
+  "!0x1d",
+  "Return Cargo",
+  "Train",
+  "Cancel Train",    //cancel train
+  "Cloak",    //cloak?
+  "Decloak",    //decloak?
+  "Hatch",
+  "!0x24",
+  "Unsiege",    //0x25
+  "Siege",
+  "Arm (Interceptor/Scarab)",
+  "Unload All",
+  "Unload",
+  "Merge Archon",    //0x2a
+  "Hold Position",
+  "Burrow",
+  "Unburrow",
+  "Cancel Nuke",
+  "Lift",
+  "Research",    //0x30
+  "!0x31",
+  "Upgrade",
+  "!0x33",
+  "!0x34",
+  "Morph",    //0x35
+  "Stim",
+  "!0x37",
+  "!0x38",
+  "!0x39",
+  "!0x3a",    //0x3a
+  "!0x3b",
+  "!0x3c",
+  "!0x3d",
+  "!0x3e",
+  "!0x3f",
+  "!0x40",    //0x40
+  "!0x41",
+  "!0x42",
+  "!0x43",
+  "!0x44",
+  "!0x45",    //0x45
+  "!0x46",
+  "!0x47",
+  "!0x48",
+  "!0x49",
+  "!0x4a",    //0x4a
+  "!0x4b",
+  "!0x4c",
+  "!0x4d",
+  "!0x4e",
+  "!0x4f",
+  "!0x50",    //0x50
+  "!0x51",
+  "!0x52",
+  "!0x53",
+  "!0x54",
+  "!0x55",
+  "!0x56",
+  "Leave Game",
+  "Minimap Ping",
+  "!0x59",
+  "Merge Dark Archon",
+  "Deselect",
+  "Chat"
 };
 const int32_t BWrepGameData::g_CommandsSize = sizeof(g_Commands)/sizeof(g_Commands[0]);
 
@@ -708,6 +710,7 @@ const int32_t BWrepGameData::g_AttackModifiersSize = sizeof(g_AttackModifiers)/s
 const char* BWrepGameData::g_HotKeyModifiers[] = {
 	"Assign",
 	"Select",
+  "Add",
 };
 
 const int32_t BWrepGameData::g_HotKeyModifiersSize = sizeof(g_HotKeyModifiers)/sizeof(g_HotKeyModifiers[0]);
@@ -718,7 +721,7 @@ const int32_t BWrepGameData::g_HotKeyModifiersSize = sizeof(g_HotKeyModifiers)/s
 const char *BWrepGameData::GetActionNameFromID(int32_t id)
 {
 	assert(id>=0 && id<BWrepGameData::g_CommandsSize);
-	return BWrepGameData::g_Commands[id];
+  return BWrepGameData::g_Commands[id];
 }
 
 //------------------------------------------------------------------------------------------------------------

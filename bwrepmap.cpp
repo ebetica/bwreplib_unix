@@ -34,7 +34,7 @@ bool BWrepMap::DecodeMap(const unsigned char *buffer, int32_t mapSize, int w, in
 		current+=4;
 
 		// extract block size
-		uint32_t bsize = *((unsigned long*)current);
+		uint32_t bsize = *((uint32_t*)current);
 		current+=4;
 
 		// init section block
@@ -47,7 +47,7 @@ bool BWrepMap::DecodeMap(const unsigned char *buffer, int32_t mapSize, int w, in
 		read+=bsize;
 	}
 
-	// keep point32_ter on buffer
+	// keep pointer on buffer
 	m_data = buffer;
 	m_datasize = mapSize;
 

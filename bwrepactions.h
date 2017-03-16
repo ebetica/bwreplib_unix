@@ -65,7 +65,7 @@ private:
 	unsigned char m_ordertype; // byte id of the type of order (ie select, move, build scv, upgrade the base, research siege mode, burrow, seige, ally chat, quit game, etc etc)
 	uint32_t m_dataoff;   // offset to data bytes in data block
 	int32_t m_datasize;	// data size
-	pfnGetParameters *m_pGetParamText; // point32_ter to function for extracting parameters
+	pfnGetParameters *m_pGetParamText; // pointer to function for extracting parameters
 
 	uint32_t m_userdata[MAXUSERDATA];
 };
@@ -366,6 +366,12 @@ ENDDECL
 //----------------------------------------------------------------------------------------------------
 
 DECLAREACTION(Unknown)
+		unsigned char m_unknown[1];
+ENDDECL
+
+//----------------------------------------------------------------------------------------------------
+
+DECLAREACTION(Chat)
 		unsigned char m_unknown[1];
 ENDDECL
 

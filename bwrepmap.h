@@ -4,6 +4,7 @@
 // Classes you should use:
 //
 // class BWrepMap
+// Check out http://www.starcraftai.com/wiki/CHK_Format
 //----------------------------------------------------------------------------------------------------
 #ifndef INC_BWREPMAP_H
 #define INC_BWREPMAP_H
@@ -27,7 +28,7 @@ private:
 	enum {MAXTITLE=4};
 	char m_title[MAXTITLE+1];
 	uint32_t m_size;
-	const unsigned char *m_data;     // point32_ter to data
+	const unsigned char *m_data;     // pointer to data
 };
 
 //----------------------------------------------------------------------------------------------------
@@ -68,10 +69,11 @@ public:
 
 //----------------------------------------------------------------------------------------------------
 
-#define SECTION_TILE "TILE"
-#define SECTION_ISOM "ISOM"
-#define SECTION_MTXM "MTXM"
-#define SECTION_UNIT "UNIT"
+#define SECTION_TILE    "TILE"
+#define SECTION_ISOM    "ISOM"
+#define SECTION_MTXM    "MTXM"
+#define SECTION_UNIT    "UNIT"
+#define SECTION_TILESET "ERA"
 
 // map info
 class BWrepMap
@@ -91,7 +93,7 @@ public:
 	const BWrepMapSection* GetTileSection() const;
 
 	//-int32_ternal
-	bool DecodeMap(const unsigned char *buffer, int32_t mapSize, int w, int h);
+	bool DecodeMap(const unsigned char *buffer, int32_t mapSize, int32_t w, int32_t h);
 
 private:
 	const unsigned char *m_data;     // point32_ter to data

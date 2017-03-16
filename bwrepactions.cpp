@@ -37,19 +37,19 @@ bool BWrepAction::ProcessActionParameters(const unsigned char * &current, int32_
 	case 0x09:
 		{
 			//select
-			int32_t bytes = 1+((int)*current)*sizeof(uint16_t);
+			int32_t bytes = 1+((int32_t)*current)*sizeof(uint16_t);
 			ASSIGNCLASSV(Select,bytes);
 		}
 	case 0x0A:
 		{
 			//shift select
-			int32_t bytes = 1+((int)*current)*sizeof(uint16_t);
+			int32_t bytes = 1+((int32_t)*current)*sizeof(uint16_t);
 			ASSIGNCLASSV(ShiftSelect,bytes);
 		}
 	case 0x0B:
 		{
 			//shift deselect
-			int32_t bytes = 1+((int)*current)*sizeof(uint16_t);
+			int32_t bytes = 1+((int32_t)*current)*sizeof(uint16_t);
 			ASSIGNCLASSV(ShiftDeselect,bytes);
 		}
 	case 0x0C: ASSIGNCLASS(Build);
@@ -138,8 +138,9 @@ bool BWrepAction::ProcessActionParameters(const unsigned char * &current, int32_
 	case 0x59:
 		break;
 	case 0x5A:ASSIGNCLASS_NP(MergeDarkArchon);
-	default:
-		assert(0);
+  case 0x5C:ASSIGNCLASSV(Chat,size);
+  default:
+    assert(0);
 	}
 
 	//assert(m_ordertype==0x33 || m_ordertype==0x34 || m_ordertype==0x0F || m_ordertype==0x12);
@@ -280,6 +281,15 @@ IMPLACTION(Unknown,256)
 	}
 ENDACTION
 
+// "chat" action
+IMPLACTION(Chat,256)
+	for(int32_t i=1; i<datasize; i++)
+	{
+    gszParams[i-1] = (int)p->m_unknown[i];
+    if (((int)p->m_unknown[i]) == 0) break;
+	}
+ENDACTION
+
 // "cloak" action
 IMPLACTION(Cloak,128)
 	return BWrepActionUnknown::gGetParameters(data,datasize);
@@ -386,7 +396,7 @@ bool BWrepActionList::DecodeActions(const unsigned char *buffer, int32_t cmdSize
 	// if we start anew
 	if(clear)
 	{
-		// keep point32_ter on the buffer we're given
+		// keep pointer on the buffer we're given
 		_Clear();
 		m_datasize = cmdSize;
 		m_data = (unsigned char *)buffer;
@@ -409,9 +419,9 @@ bool BWrepActionList::DecodeActions(const unsigned char *buffer, int32_t cmdSize
 	while(read<cmdSize)
 	{
 		// get time
-		uint32_t time = CONSUME(unsigned long);
+		uint32_t time = CONSUME(uint32_t);
 
-		// any hint32_t to a corrupted replay?
+		// any hint to a corrupted replay?
 		if(time - lastTime > 10000)
 			return false;
 
